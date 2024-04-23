@@ -1,9 +1,13 @@
 "use client"
 import {Dialog,DialogContent,DialogDescription,DialogFooter,DialogHeader, DialogTitle} from "@/components/ui/dialog";
 
-const createContact = () => {
+import { useModal } from "@/hooks/use-modal-store";
+
+const CreateContact = () => {
+  const {isOpen,type,onClose} = useModal();
+  const ModalOpen = isOpen && type == "createContact"
   return (
-    <Dialog>
+    <Dialog open={ModalOpen} onOpenChange={onClose}>
         <DialogContent className="p-0 overfllow-hidden bg-white text-black">
             <DialogHeader className="pt-8 px-6">
                 <DialogTitle className="text-2xl text-center font-bold">Cretae Contact!</DialogTitle>
@@ -14,4 +18,4 @@ const createContact = () => {
   )
 }
 
-export default createContact;
+export default CreateContact;
