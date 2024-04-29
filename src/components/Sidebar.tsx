@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { db } from "@/lib/db";
 import {
     ResizableHandle,
     ResizablePanel,
@@ -8,12 +9,13 @@ import {
 import { LeftSide } from './LeftSide'
 import { RightSide } from './RightSide'
 
-export const Sidebar = () => {
+export const Sidebar = async() => {
+  const contactNames = await db.contact.findMany();
   return (
       <div className="h-screen">
               <ResizablePanelGroup direction="horizontal">
                 <ResizablePanel>
-                  <LeftSide/>
+                  <LeftSide contactNames={contactNames}/>
                 </ResizablePanel>
                 <ResizableHandle />
                 <ResizablePanel>

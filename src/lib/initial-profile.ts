@@ -8,10 +8,12 @@ export async function InitialProfile() {
     }
     const profile = await db.profile.findUnique({
         where:{
-            userId:user.id;
+            userId:user.id,
         }
     })
-    return profile;
+    if(profile){
+        return profile;
+    }
 
     if(!profile){
         const newProfile = await db.profile.create({

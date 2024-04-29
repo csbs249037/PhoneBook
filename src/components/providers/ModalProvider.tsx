@@ -1,6 +1,8 @@
 "use client"
 import { useState,useEffect } from "react"
 import CreateContact from "../modals/create-contact";
+import EditContact from "../modals/Edit-contact";
+import DeleteContact from "../modals/delete-contact";
 
 
 
@@ -15,6 +17,8 @@ export const ModalProvider = () => {
     return (
         <>
             <CreateContact />
+            <EditContact />
+            <DeleteContact />
         </>
     )
 }
