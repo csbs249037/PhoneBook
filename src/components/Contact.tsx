@@ -1,3 +1,4 @@
+import { currentProfile } from '@/lib/current-profile';
 import { db } from '@/lib/db'
 import Link from 'next/link';
 
@@ -7,7 +8,12 @@ import Link from 'next/link';
 
 
 export const Contacts =  async() => {
-    const contacts = await db.contact.findMany();
+    const profile = await currentProfile();
+    const contacts = await db.contact.findMany({
+        where:{
+            profileId:profile.id,
+        }
+    });
     if(!contacts || contacts.length === 0){
         return(
             <div className='Text-center text-black flex justify-center items-center'>there is No contact yet!</div>

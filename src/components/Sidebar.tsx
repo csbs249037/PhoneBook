@@ -8,9 +8,15 @@ import {
   } from "@/components/ui/resizable"
 import { LeftSide } from './LeftSide'
 import { RightSide } from './RightSide'
+import { currentProfile } from '@/lib/current-profile';
 
 export const Sidebar = async() => {
-  const contactNames = await db.contact.findMany();
+  const profile = await currentProfile();
+  const contactNames = await db.contact.findMany({
+    where:{
+      profileId:profile?.id,
+    }
+  });
   return (
       <div className="h-screen">
               <ResizablePanelGroup direction="horizontal">
